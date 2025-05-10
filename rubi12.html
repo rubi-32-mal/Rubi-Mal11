@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>My Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #0f2027;
+    background: linear-gradient(135deg, #203a43 0%, #2c5364 100%);
+    color: #eee;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: #64ffda;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #a0fff4;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    background: #162f3fcc;
+    backdrop-filter: saturate(180%) blur(10px);
+    z-index: 1000;
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgb(10 25 47 / 0.2);
+  }
+  header .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #64ffda;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  nav ul li {
+    font-weight: 600;
+  }
+  nav ul li a {
+    font-size: 1rem;
+  }
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+  .hero {
+    text-align: center;
+    padding-top: 6rem;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    color: #64ffda;
+  }
+  .hero .typing {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.5rem;
+    color: #a0fff4;
+    min-height: 2rem;
+    margin-bottom: 2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #64ffda;
+    animation: blink-caret 0.75s step-end infinite;
+  }
+  @keyframes blink-caret {
+    0%, 100% {border-color: transparent;}
+    50% {border-color: #64ffda;}
+  }
+  .hero p {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  h2.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #64ffda;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid #64ffda;
+    display: inline-block;
+    padding-bottom: 0.25rem;
+  }
+  .about, .skills, .projects, .contact {
+    color: #d1d5db;
+  }
+  .about p {
+    max-width: 700px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .skill {
+    flex: 1 1 45%;
+    background: #203a43;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 0 10px #64ffda55;
+  }
+  .skill h3 {
+    margin: 0 0 0.5rem;
+    color: #64ffda;
+  }
+  .progress-bar {
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 8px;
+  }
+  .progress-fill {
+    background: #64ffda;
+    height: 8px;
+    width: 0;
+    transition: width 1.5s ease-in-out;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .project-card {
+    background: #203a43cc;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #64ffda44;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px #64ffdacc;
+  }
+  .project-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .project-content {
+    padding: 1rem;
+    flex-grow: 1;
+  }
+  .project-title {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    color: #64ffda;
+  }
+  .project-description {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+  }
+  .contact-list {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .contact-list a {
+    color: #64ffda;
+    transition: color 0.3s ease;
+  }
+  .contact-list a:hover {
+    color: #a0fff4;
+  }
+  footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #64ffdaaa;
+    background: #162f3fcc;
+  }
+
+  @media (max-width: 600px) {
+    header {
+      padding: 0.75rem 1rem;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+    }
+    nav ul {
+      gap: 1rem;
+    }
+    .skills-list {
+      flex-direction: column;
+    }
+    .skill {
+      flex: 1 1 100%;
+    }
+  }
+  @media (max-width: 350px) {
+    body {
+      font-size: 14px;
+    }
+    .project-content {
+      padding: 0.75rem;
+    }
+    .hero p {
+      font-size: 1rem;
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="#hero" class="logo">MyPortfolio</a>
+  <nav>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="hero" class="hero">
+  <h1>Hello, I'm Rubi Mal </h1>
+  <div class="typing" id="typing"></div>
+  <p>Creative web developer crafting user-friendly, modern websites that are responsive and aesthetic. Explore my work and get in touch!</p>
+</section>
+
+<section id="about" class="about">
+  <h2 class="section-title">About Me</h2>
+  <p>I am a passionate front-end developer with expertise in HTML, CSS, and JavaScript. I love turning design into code and bringing unique ideas to life on the web. I enjoy problem-solving and continuously learning new technologies to improve my craft.</p>
+</section>
+
+<section id="projects" class="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img alt="Project 1" src="https://images.pexels.com/photos/3184307/pexels-photo-3184307.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=160" class="project-image"/>
+      <div class="project-content">
+        <h3 class="project-title">Responsive Portfolio</h3>
+        <p class="project-description">A modern, responsive portfolio website with interactive elements and smooth animations.</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img alt="Project 2" src="https://images.pexels.com/photos/2977564/pexels-photo-2977564.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=160" class="project-image"/>
+      <div class="project-content">
+        <h3 class="project-title">E-commerce Store</h3>
+        <p class="project-description">A clean and user-friendly online store design with a focus on usability and fast checkout.</p>
+  </div>
+</section>
+
+<section id="skills" class="skills">
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-list" aria-label="Skills progress bars">
+    <div class="skill">
+      <h3>HTML &amp; CSS</h3>
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="95">
+        <div class="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="skill">
+      <h3>JavaScript</h3>
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85">
+        <div class="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="skill">
+      <h3>React</h3>
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+        <div class="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="skill">
+      <h3>UI/UX Design</h3>
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80">
+        <div class="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2 class="section-title">Contact</h2>
+  <p>Feel free to reach out via email.</p>
+  <div class="contact-list" role="list">
+    <a href="mailto:rubim5214@gmail.com" aria-label="Send email"><svg width="24" height="24" fill="#64ffda" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M2 4v16h20V4H2zm18 2-8 5-8-5h16zm-16 12V8l8 5 8-5v10H4z"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Rubi Mal. All rights reserved.
+</footer>
+
+<script>
+  // Typing animation for hero section
+  const typingElement = document.getElementById('typing');
+  const words = ['Web Developer.', 'Creative Coder.', 'UI/UX Enthusiast.', 'Problem Solver.'];
+  let wordIndex = 0;
+  let letterIndex = 0;
+  let currentWord = '';
+  let isDeleting = false;
+  let typingSpeed = 120;
+
+  function type() {
+    if (wordIndex >= words.length) {
+      wordIndex = 0;
+    }
+    currentWord = words[wordIndex];
+    if (!isDeleting) {
+      typingElement.textContent = currentWord.substring(0, letterIndex + 1);
+      letterIndex++;
+      if (letterIndex === currentWord.length) {
+        isDeleting = true;
+        typingSpeed = 1500;
+      } else {
+        typingSpeed = 120;
+      }
+    } else {
+      typingElement.textContent = currentWord.substring(0, letterIndex - 1);
+      letterIndex--;
+      if (letterIndex === 0) {
+        isDeleting = false;
+        wordIndex++;
+        typingSpeed = 500;
+      } else {
+        typingSpeed = 50;
+      }
+    }
+    setTimeout(type, typingSpeed);
+  }
+  type();
+
+  // Animate skill progress bars once in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+  }
+
+  const skillProgressFills = document.querySelectorAll('.progress-fill');
+  const skillContainers = document.querySelectorAll('.skill');
+
+  function animateSkills() {
+    skillContainers.forEach((container, i) => {
+      if (isInViewport(container)) {
+        let targetWidth = container.querySelector('.progress-bar').getAttribute('aria-valuenow');
+        skillProgressFills[i].style.width = targetWidth + '%';
+      }
+    });
+  }
+  window.addEventListener('scroll', animateSkills);
+  window.addEventListener('load', animateSkills);
+</script>
+</body>
+</html>
